@@ -1,5 +1,6 @@
 # helpers.py
 from textwrap import dedent
+from typing import List
 from crewai import Agent, Task, LLM
 from langchain_nvidia_ai_endpoints import ChatNVIDIA
 from exa_py import Exa
@@ -21,12 +22,12 @@ class ExaSearchTool:
         return ExaSearchTool._exa().search_and_contents(url, num_results=3)
 
     @tool
-    def get_contents(ids: str):
+    def get_contents(urls: List[str]):
         """Get the contents of a webpage.
-        The ids must be passed in as a list, a list of ids returned from `search`.
+        The urls must be passed in as a list, a list of urls returned from `search`.
         """
-        ids = eval(ids) # Safely evaluate the string representation of a list
-        contents = str(ExaSearchTool._exa().get_contents(ids))
+        # ids = eval(ids) # Safely evaluate the string representation of a list
+        contents = str(ExaSearchTool._exa().get_contents(urls))
         contents = contents.split("URL:")
         contents = [content[:1000] for content in contents] # Limit content length
         return "\n\n".join(contents)
