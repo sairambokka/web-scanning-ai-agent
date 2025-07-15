@@ -28,7 +28,7 @@ def get_network_and_dom_data(url):
     For local execution, you might need to adjust the Selenium setup
     to use a local ChromeDriver.
     """
-    chromedriver_path = os.getenv["CHROMEDRIVER_PATH"]
+    chromedriver_path = os.getenv("CHROMEDRIVER_PATH")
     service_obj = Service(chromedriver_path) # Create a Service object
 
     options = Options()
@@ -37,7 +37,7 @@ def get_network_and_dom_data(url):
     options.add_argument("--disable-gpu") # Recommended for headless mode
     options.add_argument("--no-sandbox") # Required for some environments (e.g., Docker)
     options.add_argument("--disable-dev-shm-usage") # Required for some environments
-    chrome_binary_path = os.getenv["CHROME_BINARY_PATH"]
+    chrome_binary_path = os.getenv("CHROME_BINARY_PATH")
     options.binary_location = chrome_binary_path
     # Set up desired capabilities for logging
     options.set_capability('goog:loggingPrefs', {'browser': 'ALL', 'performance': 'ALL'})
