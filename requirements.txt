@@ -1,0 +1,9 @@
+crewai
+duckduckgo-search
+decouple
+langchain-exa
+exa_py
+langchain_groq
+google-colab-selenium[undetected]
+beautifulsoup4
+python-dotenv
