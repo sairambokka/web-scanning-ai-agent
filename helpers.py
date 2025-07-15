@@ -1,8 +1,8 @@
 # helpers.py
 from textwrap import dedent
 from crewai import Agent, Task, LLM
+from langchain_nvidia_ai_endpoints import ChatNVIDIA
 from exa_py import Exa
-from langchain_groq import ChatGroq
 from crewai.tools import tool
 import os
 
@@ -40,9 +40,10 @@ class ExaSearchTool:
 
 class SecurityAnalysisAgents:
     """Defines the AI agents for security analysis."""
-    def __init__(self, groq_api_key):
-        self.llama3 = LLM( 
-            model="groq/llama3-8b-8192", 
+    def __init__(self, openai_api_key):
+        self.llama3 = ChatNVIDIA( 
+            model="nvidia/llama-3.3-nemotron-super-49b-v1",
+            api_key=openai_api_key,
             )
 
     def industry_analysis_agent(self):

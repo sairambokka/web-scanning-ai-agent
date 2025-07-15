@@ -1,7 +1,6 @@
 # main.py
 import os
 from crewai import Crew
-from IPython.display import display, Markdown
 from bs4 import BeautifulSoup
 
 # Import functions and classes from helpers.py and utils.py
@@ -15,10 +14,10 @@ def run_security_analysis():
     url = input("Enter Your URL : ")
 
     # Get API keys
-    groq_api_key, exa_api_key = get_api_keys()
+    openai_api_key, exa_api_key = get_api_keys()
 
     # Set environment variables for CrewAI tools
-    os.environ["GROQ_API_KEY"] = groq_api_key
+    os.environ["OPENAI_API_KEY"] = openai_api_key
     os.environ["EXA_API_KEY"] = exa_api_key
 
     # Get Network Logs and DOM data
@@ -40,8 +39,9 @@ def run_security_analysis():
 
 
     # Initialize Agents and Tasks
-    agents = SecurityAnalysisAgents(groq_api_key=groq_api_key)
+    agents = SecurityAnalysisAgents(openai_api_key=openai_api_key)
     tasks = SecurityAnalysisTasks()
+
 
     industry_analyst_agent = agents.industry_analysis_agent()
     frontend_security_agent = agents.frontend_security_agent()
@@ -72,12 +72,12 @@ def run_security_analysis():
             network_research_task,
             summary_and_briefing_task
         ],
-        verbose=True
+        verbose=True,
     )
 
     result = crew.kickoff()
     print("\n\n################################################")
-    display(Markdown(result))
+    print(result.raw)
 
 if __name__ == "__main__":
     run_security_analysis()
