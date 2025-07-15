@@ -3,7 +3,7 @@ duckduckgo-search
 decouple
 langchain-exa
 exa_py
-langchain_groq
-google-colab-selenium[undetected]
+selenium
+langchain_nvidia_ai_endpoints
 beautifulsoup4
 python-dotenv
